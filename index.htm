@@ -13,6 +13,10 @@
       padding: 0;
     }
 
+    img {
+      width: 200px;
+    }
+
     #map {
       position: absolute;
       top: 0;
@@ -29,7 +33,7 @@
     const map = new mapboxgl.Map({
       container: 'map',
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-      style: 'mapbox://styles/mapbox/outdoors-v12',
+      style: 'mapbox://styles/celeste-09/cmg8iswms000j01ricg0rcoxn',
       center: [-122.26899462607477, 37.803423011640206],
       zoom: 10
     });
@@ -49,6 +53,7 @@
               "properties": {
                 'name': "Summer Search",
                 'description': "This is the HQ were you get all your equipment for any event.",
+                'image' : "img/summer-search.png",
               }
             },
             {
@@ -60,6 +65,7 @@
               "properties": {
                 'name': "Mills College Upward Bound",
                 'description': "This is where I took my first college class and I take my Saturday classes during the winter.",
+                'image' : "img/mills-college.png",
               }
             },
             {
@@ -71,6 +77,7 @@
               "properties": {
                 'name': "Pre-Collegiate Academy",
                 'description': "This is where I took my first High school program and I learnt about algebra 1 before taking it.",
+                'image' : "img/merrit-college.png",
               }
             }
           ]
@@ -97,10 +104,11 @@
         const coordinates = e.feature.geometry.coordinates.slice();
         const name = e.feature.properties.name;
         const description = e.feature.properties.description;
+        const image = e.feature.properties.image;
 
         new mapboxgl.Popup()
           .setLngLat(coordinates)
-          .setHTML("<br><strong>" + name + "</strong><br/>" + description)
+          .setHTML("<img src='" + image + "'><br><strong>" + name + "</strong><br/>" + description)
           .addTo(map);
       }
     });
